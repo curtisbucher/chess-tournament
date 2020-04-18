@@ -16,4 +16,4 @@ jobs:
     - name: Get Requirements
       uses: pip install -r requirements.txt
     - name: Run Tournament
-      run: python3 compete.py
+      run: python3 compete.py ${{ github.actor }}
