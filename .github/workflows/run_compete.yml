@@ -1,0 +1,19 @@
+name: Run Competition
+on:
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get Code
+      uses: actions/checkout@v2
+    - name: Get Python
+      uses: actions/setup-python@v1.2.0
+      with:
+        python-version: 3.8
+    - name: Get Requirements
+      uses: pip install -r requirements.txt
+    - name: Run Tournament
+      run: python3 compete.py
