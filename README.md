@@ -1,9 +1,7 @@
 # chess-tournament
 A competitive chess tournament run weekly in this repository. Contestants are added by cloning the repository and opening a pull request with your new chess engine.
 
----
-
-### Here's how it works
+## Here's how it works
 
 1. Prospective competitors clone this chess-tournament repo onto their local machine, using `git clone https://github.com/curtisbucher/chess-tournament`
 2. Competitor creates a folder in the `/competitors` directory that matches their github username exactly. For example, my own folder is be under `/competitors/curtisbucher`
@@ -12,11 +10,9 @@ A competitive chess tournament run weekly in this repository. Contestants are ad
     * Doesn't break any of our (very few) rules.
     * And beats our default chess engine. (Don't worry it plays poorly)
 
----
+## Getting Started
 
-### Getting Started
-
-##### Structure
+### Structure
 
 We have a few requirements for each developer's chess engine. The main functions `tournament.py` and `qualify.py` communicate with each user's engine by importing `main.py` from the user's home folder in the `/competitors` directory. Here is an example repository structure.
 
@@ -34,7 +30,7 @@ We have a few requirements for each developer's chess engine. The main functions
 
 From `/competitors/username/main.py` the engine calls the function `get_move(last_move, time_limit)`. Our protocol aims to be as simple and universal as possible, so each developer's chess engine is responsible for keeping track of the current board state, providing only the last move played by the opponent. A chess engine can determine whether it is black or white the first time `get_move(last_move, time_limit)` is called. If `last_move` is an empty string, than your chess engine is white, and plays first. If last move is anything else, than your chess engine is black and plays second.
 
-##### Move Notation
+### Move Notation
 
 We use [UCI chess notation](https://en.wikipedia.org/wiki/Universal_Chess_Interface) to communicate between chess engines. We assign every column (file) on the board a letter, and every row (rank) a number. This way, each square on the board has its own unique identifier.
 
@@ -45,7 +41,7 @@ A move is denoted by first stating the origin coordinates (file, rank) of the pi
 
 The structure is as follows `[Origin File][Origin Rank][Destination File][Destination Rank]{Promoted Peice}`
 
-#### Rules
+### Rules
 
 We have a few rules to keep the repository clean and to maintain a fair playing environment.
 
