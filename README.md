@@ -45,11 +45,11 @@ A move is denoted by first stating the origin coordinates (file, rank) of the pi
 
 The structure is as follows `[Origin File][Origin Rank][Destination File][Destination Rank]{Promoted Peice}`
 
-##### Rules
+#### Rules
 
 We have a few rules to keep the repository clean and to maintain a fair playing environment.
 
 * **Time Limit**: Chess engines must play within the time passed to the `get_move(last_move, time_limit)` function. Failing to return a valid chess move withing this time will forfeit the game to the opponent. To limit the duration of qualifying and tournaments, the time limit for current chess engines is set at **10 seconds**. It is recommended that you have a timer in your program to send your current best move before your time is over. There are many clever ways of doing this.
-* **Valid Play**: Making an illegal or invalid move during tournament play or qualifying results in a forfeited game or a failure to qualify. An illegal move is a valid UCI move that cannot be played at that time. An invalid move is an invalid UCI move, like "`foo`" or `a1b2h4`.
+* **Valid Play**: Making an illegal or invalid move during tournament play or qualifying results in a forfeited game or a failure to qualify. An illegal move is a valid UCI move that cannot be played at that time. An invalid move is an invalid UCI move, like `"foo"` or `"a1b2h4"`.
 * **General Mischeif**: Don't do anything sneaky like messing with other people's programs in the repository or messing with the qualifying and tournament software. We have tests for this, and any mischeif will permanently ban a developer from the tournament.
 
