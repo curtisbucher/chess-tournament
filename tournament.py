@@ -7,7 +7,7 @@ import random
 import importlib
 import chess
 import typing
-from typing import List
+from typing import List, Union
 import traceback
 from func_timeout import func_timeout, FunctionTimedOut
 import math
@@ -15,9 +15,14 @@ import math
 
 class Competitor:
     def __init__(self, username):
+        """ init """
         self.name = username
         self.path = '.'.join(["competitors", username, "main"])
         self.engine = importlib.import_module(self.path)
+
+    def reset_engine(self):
+        """ Resets engine to play another round """
+        self.engine = importlib.reload(self.engine)
 
 
 def main(TIME_LIMIT: int, QUIET=False) -> str:
@@ -35,7 +40,8 @@ def main(TIME_LIMIT: int, QUIET=False) -> str:
 
     # Compete until one winner left
     while len(competitors) > 1:
-        print([x.name if x != None else "None" for x in competitors])
+        print("Competitors:", [x.name if x !=
+                               None else "None" for x in competitors], "\n")
         winners: List[Competitor] = []
         for x in range(0, len(competitors), 2):
             winners += [compete(competitors[x], competitors[x + 1],
@@ -49,13 +55,19 @@ def main(TIME_LIMIT: int, QUIET=False) -> str:
 
 def compete(player1: Competitor, player2: Competitor, TIME_LIMIT: int, QUIET: bool) -> Competitor:
     """ Plays two chess engines and returns the winner"""
-    players = player1, player2
-    print([x.name if x != None else "None" for x in players])
     # Returning an automatic win if playing a bye
-    if not players[0]:
-        return players[1]
-    elif not players[1]:
-        return players[0]
+    if not player1:
+        print(player2.name, "has a bye")
+        return player2
+    elif not player2:
+        print(player1.name, "has a bye")
+        return player1
+
+    print("Playing:", player1.name, player2.name)
+
+    player1.reset_engine()
+    player2.reset_engine()
+    players = player1, player2
 
     turn = 0
     Board = chess.Board()
@@ -64,13 +76,13 @@ def compete(player1: Competitor, player2: Competitor, TIME_LIMIT: int, QUIET: bo
     while not Board.is_game_over():
         try:
             last_move = func_timeout(
-                TIME_LIMIT, players[turn % 2].engine.get_move, args=(last_move,))
+                TIME_LIMIT, players[turn % 2].engine.get_move, args=(last_move, TIME_LIMIT))
 
         except FunctionTimedOut:
             # Handling function timeout from chess engines
             print(players[turn % 2].name,
                   "'s chess engine took to long to play, forfeiting the match to",
-                  players[(turn % 2) + 1].name)
+                  players[(turn + 1) % 2].name)
             return players[(turn + 1) % 2]
 
         except Exception as e:
@@ -119,14 +131,17 @@ def compete(player1: Competitor, player2: Competitor, TIME_LIMIT: int, QUIET: bo
         Board.push(chess.Move.from_uci(last_move))
         turn += 1
 
-    print("\nTurns:", turn, "\nResults:", Board.result())
-
+    # Returning the winning player
     result = Board.result()
     if len(result) > 3:  # Returning a random player in the event of a draw (1/2,1/2). (Not Ideal)
-        return random.choice(players)
+        winner = random.choice(players)
+        print("Draw: Coin flip goes to", winner.name)
+        return winner
     else:  # Returning the winner
         if int(result[0]):
+            print("Winner:", players[0])
             return players[0]
+    print("Winner:", player[1])
     return players[1]
 
 
@@ -138,8 +153,11 @@ if __name__ == "__main__":
             "usage: qualify.py [-q quiet] <time limit (seconds)>")
         sys.exit(2)
 
+    if '-h' in dict(opts).keys() or not args:
+        print(
+            "usage: qualify.py [-q quiet] <time limit (seconds)>")
+        sys.exit(2)
+
     time_limit = int(args[0])
     run_quiet = '-q' in dict(opts).keys()
-    help = '-h' in dict(opts).keys()
-
     main(time_limit, run_quiet)

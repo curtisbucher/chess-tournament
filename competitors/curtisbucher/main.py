@@ -434,7 +434,7 @@ BLACK = False
 side = BLACK
 
 
-def get_move(last_move):
+def get_move(last_move, time_limit):
     global promotion
     global side
     if not last_move:

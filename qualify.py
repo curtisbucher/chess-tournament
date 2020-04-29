@@ -42,7 +42,7 @@ def main(qual_user, TIME_LIMIT, QUIET=False):
     while not Board.is_game_over():
         try:
             last_move = func_timeout(
-                TIME_LIMIT, players[turn % 2].engine.get_move, args=(last_move,))
+                TIME_LIMIT, players[turn % 2].engine.get_move, args=(last_move, TIME_LIMIT))
 
         except FunctionTimedOut:
             # Handling function timeout from chess engines
@@ -108,7 +108,11 @@ if __name__ == "__main__":
         opts, args = getopt.getopt(sys.argv[1:], "hq")
     except getopt.GetoptError:
         print(
-            "usage: qualify.py [-q quiet] <qualifying user> <time limit (seconds)>")
+            "usage: qualify.py [-q quiet] [-h help] <qualifying user> <time limit (seconds)>")
+        sys.exit(2)
+    if not args:
+        print(
+            "usage: qualify.py [-q quiet] [-h help] <qualifying user> <time limit (seconds)>")
         sys.exit(2)
 
     qual_user = args[0]
