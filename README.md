@@ -1,6 +1,8 @@
 # chess-tournament
 A competitive chess tournament run weekly in this repository. Contestants are added by cloning the repository and opening a pull request with your new chess engine.
 
+[Still In Progress, Tournaments Not Ready yet]
+
 ## Here's how it works
 
 1. Prospective competitors clone this chess-tournament repo onto their local machine, using `git clone https://github.com/curtisbucher/chess-tournament`
@@ -9,6 +11,8 @@ A competitive chess tournament run weekly in this repository. Contestants are ad
 4. Once you, the developer, are happy with your chess engine, you will submit a pull request to branch `master ` of the  `chess-tournament` repository, where your PR will be run through a series of tests, to determine your engines eligibility. Your chess engine is eligible to play in tournaments if it
     * Doesn't break any of our (very few) rules.
     * And beats our default chess engine. (Don't worry it plays poorly)
+
+
 
 ## Getting Started
 
@@ -48,4 +52,10 @@ We have a few rules to keep the repository clean and to maintain a fair playing 
 * **Time Limit**: Chess engines must play within the time passed to the `get_move(last_move, time_limit)` function. Failing to return a valid chess move withing this time will forfeit the game to the opponent. To limit the duration of qualifying and tournaments, the time limit for current chess engines is set at **10 seconds**. This is subject to increase or decrease depending on tournament duration. It is recommended that you have a timer in your program to send your current best move before your time is over. There are many clever ways of doing this.
 * **Valid Play**: Making an illegal or invalid move during tournament play or qualifying results in a forfeited game or a failure to qualify. An illegal move is a valid UCI move that cannot be played at that time. An invalid move is an invalid UCI move, like `"foo"` or `"a1b2h4"`.
 * **General Mischeif**: Don't do anything sneaky like messing with other people's programs in the repository or messing with the qualifying and tournament software. We have tests for this, and any mischeif will permanently ban a developer from the tournament.
+
+
+
+## Contributing
+
+In the future we will have a system for contributing to the actual tournament project without being flagged for cheating, but for now if you modify the code without changing your own chess engine in a PR, than we know you are contributing.
 
