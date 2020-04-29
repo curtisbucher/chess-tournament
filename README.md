@@ -38,7 +38,7 @@ From `/competitors/username/main.py` the engine calls the function `get_move(las
 
 We use [UCI chess notation](https://en.wikipedia.org/wiki/Universal_Chess_Interface) to communicate between chess engines. We assign every column (file) on the board a letter, and every row (rank) a number. This way, each square on the board has its own unique identifier.
 
-<img width="33%" height="33%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SCD_algebraic_notation.svg/1200px-SCD_algebraic_notation.svg.png" alt="chessboard" />
+<center><img width="33%" height="33%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SCD_algebraic_notation.svg/1200px-SCD_algebraic_notation.svg.png" alt="chessboard" /></center>
 
 
 A move is denoted by first stating the origin coordinates (file, rank) of the piece, then the destination coordinates (file, rank) of the peice. For example, to move the left black knight forward in this picture, the engine could send the string `"b8c6"` or `"b8a6"`. Pawn promotions are denoted by adding an extra fifth character to the end stating the desired promotion. For example, `"a7a8q"` to promote a white pawn to a queen.
