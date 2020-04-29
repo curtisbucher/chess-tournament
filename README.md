@@ -16,7 +16,7 @@ A competitive computer chess engine tournament run weekly in this repository. Co
 
 ## Getting Started
 
-### Structure
+### **Structure**
 
 We have a few requirements for each developer's chess engine. The main functions `tournament.py` and `qualify.py` communicate with each user's engine by importing `main.py` from the user's home folder in the `/competitors` directory. Here is an example repository structure.
 
@@ -34,7 +34,7 @@ We have a few requirements for each developer's chess engine. The main functions
 
 From `/competitors/username/main.py` the engine calls the function `get_move(last_move, time_limit)`. Our protocol aims to be as simple and universal as possible, so each developer's chess engine is responsible for keeping track of the current board state, providing only the last move played by the opponent. A chess engine can determine whether it is black or white the first time `get_move(last_move, time_limit)` is called. If `last_move` is an empty string, than your chess engine is white, and plays first. If last move is anything else, than your chess engine is black and plays second. Feel free to use other modules like python-chess in your engine, but remember that moves must always be sent and received as UCI strings, and you are responsible for keeping track of the board status and color.
 
-### Move Notation
+### **Move Notation**
 
 We use [UCI chess notation](https://en.wikipedia.org/wiki/Universal_Chess_Interface) to communicate between chess engines. We assign every column (file) on the board a letter, and every row (rank) a number. This way, each square on the board has its own unique identifier.
 
@@ -45,7 +45,7 @@ A move is denoted by first stating the origin coordinates (file, rank) of the pi
 
 The structure is as follows `[Origin File][Origin Rank][Destination File][Destination Rank]{Promoted Peice}`
 
-### Rules
+### **Rules**
 
 We have a few rules to keep the repository clean and to maintain a fair playing environment.
 
