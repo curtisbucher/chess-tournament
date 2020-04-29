@@ -1,7 +1,19 @@
 # chess-tournament
-A competitive computer chess engine tournament run weekly in this repository. Contestants are added by cloning the repository and opening a pull request with your new chess engine. All software and engines are written in python.
+A competitive computer chess engine tournament run weekly in this repository. Contestants are added by cloning the repository and opening a pull request with your new chess engine. 
 
 [Still In Progress, Tournaments Not Ready yet]
+
+
+
+## Current Leaderboard
+
+1. --
+
+2. --
+
+3. --
+
+   
 
 ## Here's how it works
 
