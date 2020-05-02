@@ -20,4 +20,4 @@ jobs:
       - name: Run Tournament
         env:
           TIME_LIMIT: 5
-        run: python3 qualify.py ${{ github.actor }} $TIME_LIMIT
+        run: python3 compete.py ${{ github.actor }} defaultengine $TIME_LIMIT

@@ -19,10 +19,10 @@ A competitive computer chess engine tournament run weekly in this repository. Co
 
 1. Prospective competitors clone this chess-tournament repo onto their local machine, using `git clone https://github.com/curtisbucher/chess-tournament`
 2. Competitor creates a folder in the `/competitors` directory that matches their github username exactly. For example, my own folder is be under `/competitors/curtisbucher`
-3. Competitors develop their chess engine in this user folder. Currently, the only supported language is Python 3. We want to see the best chess engines possible, so rules are pretty lax considering how you design your engine. While you are developing your chess engine, developers can run `qualify.py [-q] <username>` to your engine against a random opponent, or use `tournament.py` to see how your engine stacks up against the competition.
-4. Once you, the developer, are happy with your chess engine, you will submit a pull request to branch `master ` of the  `chess-tournament` repository, where your PR will be run through a series of tests, to determine your engines eligibility. Your chess engine is eligible to play in tournaments if it
+3. Competitors develop their chess engine in this user folder. Currently, the only supported language is Python 3. We want to see the best chess engines possible, so rules are pretty lax considering how you design your engine. While you are developing your chess engine, developers can run `match.py [-q] <username> <opponent username>` to your engine against another opponent, or use `tournament.py` to see how your engine stacks up against in a competition.
+4. Once you, the developer, are happy with your chess engine, you will submit a pull request to branch `master ` of the  `chess-tournament` repository, where your PR will be run through a series of tests, to determine your engines eligibility. Your chess engine is eligible to play in tournaments if it:
     * Doesn't break any of our (very few) rules.
-    * And beats our default chess engine. (Don't worry it plays poorly)
+    * Beats our default chess engine. (Don't worry, it plays poorly)
 
 
 
@@ -30,12 +30,12 @@ A competitive computer chess engine tournament run weekly in this repository. Co
 
 ### **Structure**
 
-We have a few requirements for each developer's chess engine. The main functions `tournament.py` and `qualify.py` communicate with each user's engine by importing `main.py` from the user's home folder in the `/competitors` directory. Here is an example repository structure.
+We have a few requirements for each developer's chess engine. The main functions `tournament.py` and `match.py` communicate with each user's engine by importing `main.py` from the user's home folder in the `/competitors` directory. Here is an example repository structure.
 
 ```
 .
 ├── tournament.py
-├── qualify.py
+├── match.py
 ├── competitors
 |   ├── usernameA
 |		├── usernameB
