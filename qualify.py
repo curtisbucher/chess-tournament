@@ -48,7 +48,7 @@ def main(qual_user, TIME_LIMIT, QUIET=False):
             # Handling function timeout from chess engines
             print(players[turn % 2].name,
                   "'s chess engine took to long to play, forfeiting the match to",
-                  players[(turn % 2) + 1].name)
+                  players[(turn + 1) % 2].name)
             return players[turn % 2] != actor
 
         except Exception as e:
