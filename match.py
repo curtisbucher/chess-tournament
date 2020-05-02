@@ -18,15 +18,21 @@ class Competitor:
         self.engine = importlib.import_module(self.path)
 
 
-def main(qual_user, TIME_LIMIT, QUIET=False):
+def compete(playerA: str, playerB: str, TIME_LIMIT, QUIET=False) -> bool:
+    """
+    Play playerA against playerB and return true if playerA wins. If player B wins return false.
+    If match ends in a draw, return random bool.
+    """
+    # Dealing with byes
+    if not playerA:
+        return False
+    elif not playerB:
+        return True
     # Getting the path to the PR actors' chess algorithm
-    actor = Competitor(qual_user)
+    actor = Competitor(playerA)
 
     # Getting the path to a random opponent's chess algorithm
-    competitors = os.listdir('competitors')
-    competitors.remove(actor.name)
-
-    opponent = Competitor(random.choice(competitors))
+    opponent = Competitor(playerB)
 
     players = [actor, opponent]
     random.shuffle(players)
@@ -108,16 +114,17 @@ if __name__ == "__main__":
         opts, args = getopt.getopt(sys.argv[1:], "hq")
     except getopt.GetoptError:
         print(
-            "usage: qualify.py [-q quiet] [-h help] <qualifying user> <time limit (seconds)>")
+            "usage: match.py [-q quiet] [-h help] <playerA> <playerB> <time limit (seconds)>")
         sys.exit(2)
     if not args:
         print(
-            "usage: qualify.py [-q quiet] [-h help] <qualifying user> <time limit (seconds)>")
+            "usage: match.py [-q quiet] [-h help] <playerA> <playerB> <time limit (seconds)>")
         sys.exit(2)
 
-    qual_user = args[0]
-    time_limit = int(args[1])
+    playerA = args[0]
+    playerB = args[1]
+    time_limit = int(args[2])
     run_quiet = '-q' in dict(opts).keys()
     help = '-h' in dict(opts).keys()
 
-    main(qual_user, time_limit, run_quiet)
+    compete(playerA, playerB, time_limit, run_quiet)
