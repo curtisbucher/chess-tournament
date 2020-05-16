@@ -1,5 +1,5 @@
 # chess-tournament
-A competitive computer chess engine tournament run weekly in this repository. Contestants are added by cloning the repository and opening a pull request with your new chess engine. 
+A competitive computer chess engine tournament run weekly in this repository. Contestants are added by cloning the repository and opening a pull request with your new chess engine.
 
 [Still In Progress, Tournaments Not Ready yet]
 
@@ -13,7 +13,7 @@ A competitive computer chess engine tournament run weekly in this repository. Co
 
 3. --
 
-   
+
 
 ## Here's how it works
 
@@ -30,18 +30,19 @@ A competitive computer chess engine tournament run weekly in this repository. Co
 
 ### **Structure**
 
-We have a few requirements for each developer's chess engine. The main functions `tournament.py` and `match.py` communicate with each user's engine by importing `main.py` from the user's home folder in the `/competitors` directory. Here is an example repository structure.
+We have a few requirements for each developer's chess engine. The main functions `tournament.py` and `match.py` communicate with each user's engine by importing `main.py` from the user's home folder in the `/competitors` directory. If you include a `requirements.txt` file in your home directory, make sure to add the line `-r yourusername/requirements.txt` to the file `requirements.txt` at the base of the repo.  Here is an example repository structure.
 
 ```
 .
 ├── tournament.py
 ├── match.py
+├── requirements.py
 ├── competitors
 |   ├── usernameA
 |		├── usernameB
 |   └── curtisbucher
-|		|   └── main.py
-|		|   └── requirements.txt (if you import other modules)
+|	|   └── main.py
+|	|   └── requirements.txt (if you import other modules)
 ```
 
 From `/competitors/username/main.py` the engine calls the function `get_move(last_move, time_limit)`. Our protocol aims to be as simple and universal as possible, so each developer's chess engine is responsible for keeping track of the current board state, providing only the last move played by the opponent. A chess engine can determine whether it is black or white the first time `get_move(last_move, time_limit)` is called. If `last_move` is an empty string, than your chess engine is white, and plays first. If last move is anything else, than your chess engine is black and plays second. Feel free to use other modules like python-chess in your engine, but remember that moves must always be sent and received as UCI strings, and you are responsible for keeping track of the board status and color.
@@ -63,7 +64,7 @@ We have a few rules to keep the repository clean and to maintain a fair playing 
 
 * **Time Limit**: Chess engines must play within the time passed to the `get_move(last_move, time_limit)` function. Failing to return a valid chess move withing this time will forfeit the game to the opponent. To limit the duration of qualifying and tournaments, the time limit for current chess engines is set at **10 seconds**. This is subject to increase or decrease depending on tournament duration. It is recommended that you have a timer in your program to send your current best move before your time is over. There are many clever ways of doing this.
 * **Valid Play**: Making an illegal or invalid move during tournament play or qualifying results in a forfeited game or a failure to qualify. An illegal move is a valid UCI move that cannot be played at that time. An invalid move is an invalid UCI move, like `"foo"` or `"a1b2h4"`.
-* **General Mischeif**: Don't do anything sneaky like messing with other people's programs in the repository or messing with the qualifying and tournament software. We have tests for this, and any mischeif will permanently ban a developer from the tournament.
+* **General Mischeif**: Don't do anything sneaky like messing with other people's programs in the repository or messing with the qualifying and tournament software. Any mischeif will permanently ban a developer from the tournament.
 
 
 
