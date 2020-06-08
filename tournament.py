@@ -20,6 +20,9 @@ def main(TIME_LIMIT: int, QUIET=False) -> str:
     # Get list of all the algorithms
     competitors = [name for name in os.listdir('competitors')]
 
+    # Storing the competitors in reverse order of how well they did
+    rankings: List[str] = []
+
     # Adding byes to make list length a power of 2
     extra = 2 ** round(math.log2(len(competitors))) - len(competitors)
     competitors += [None] * extra
@@ -35,9 +38,12 @@ def main(TIME_LIMIT: int, QUIET=False) -> str:
         for x in range(0, len(competitors), 2):
             if compete(competitors[x], competitors[x + 1], TIME_LIMIT, QUIET):
                 winners += competitors[x]
-                print(competitors[x], "beat", competitors[x+1])
+                if competitors[x+1]:
+                    rankings += competitors[x + 1]
+                print(competitors[x], "beat", competitors[x + 1])
             else:
                 winners += competitors[x + 1]
+
                 print(competitors[x+1], "beat", competitors[x])
 
         competitors = list(winners)
