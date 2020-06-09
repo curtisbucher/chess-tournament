@@ -3,6 +3,9 @@ name: Run Tournament
 on:
   schedule:
     - cron: "0 12 * * 0"
+  push:
+    branches:
+      - workflow_testing
 jobs:
   build:
     runs-on: ubuntu-latest
